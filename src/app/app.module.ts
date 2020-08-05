@@ -21,6 +21,7 @@ import { AdministradorPerfilComponent } from './pages/auth/administrador-perfil/
 import { AuthInterceptorService } from './services/interceptores/auth-interceptor.service';
 import { PerfilComponenteComponent } from './components/perfil-componente/perfil-componente.component';
 import { ImagenesPipe } from './pipes/imagenes.pipe';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ImagenesPipe } from './pipes/imagenes.pipe';
     ProductosComponent,
     AdministradorPerfilComponent,
     PerfilComponenteComponent,
-    ImagenesPipe
+    ImagenesPipe,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

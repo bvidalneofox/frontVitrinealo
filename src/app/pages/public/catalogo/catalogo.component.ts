@@ -10,6 +10,7 @@ import { PerfilService } from 'src/app/services/perfil.service';
 export class CatalogoComponent implements OnInit {
 
   perfiles: Perfil[] = [];
+  loading: boolean = true;
 
   constructor(
     public _perfilService: PerfilService
@@ -20,8 +21,10 @@ export class CatalogoComponent implements OnInit {
   }
 
   getPerfiles(){
+    this.loading = true;
     this._perfilService.getPerfiles().subscribe(response => {
       this.perfiles = response.perfiles;
+      this.loading = false;
     });
   }
 

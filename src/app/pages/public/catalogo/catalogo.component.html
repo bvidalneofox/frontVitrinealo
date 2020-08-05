@@ -11,6 +11,8 @@
 <div class="row">
     <div class="col-md-9">
 
+        <app-loading *ngIf="loading"></app-loading>
+
         <div *ngFor="let itemPerfil of perfiles">
             <div class="mt-1"></div>
             <app-item [perfil]="itemPerfil"></app-item>
