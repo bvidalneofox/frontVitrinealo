@@ -1,0 +1,39 @@
+<div class="row text-center">
+    <div class="col-12">
+        <div class="card border-0">
+            <div class="card-body">
+                <img src="assets/images/banner-slim.png" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-9">
+
+        <div *ngFor="let itemPerfil of perfiles">
+            <div class="mt-1"></div>
+            <app-item [perfil]="itemPerfil"></app-item>
+            <div class="mb-1"></div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-12">
+                <div class="card salmon-outline">
+                    <div class="card-body">
+                        <img src="assets/images/banner-ad.png" alt="publicidadBanner" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <app-filtro></app-filtro>
+        <div class="card salmon-outline mt-2">
+            <div class="card-body">
+                <img src="assets/images/ad.jpg" alt="publicidad" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light salmon" [ngStyle]="{'background': _perfilService.color}">
+  <a class="navbar-brand text-white font-weight-bold" [routerLink]="['/']">¡Vitrinealo!</a><span class="font-weight-light">Una cosita de neofox</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item dropdown mr-1">
+        <a class="nav-link btn salmon-outline dropdown-toggle" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}" href="#" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ¡Iniciar Sesión!
+        </a>
+        <div class="dropdown-menu salmon-outline animate__animated animate__flipInY" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}" aria-labelledby="navbarDropdown"
+          style="width: 20rem;">
+          <div class="card border-0">
+            <div class="card-body">
+              <form #f="ngForm" (submit)="login()">
+                <h3 class="card-title">Ingresa tus datos</h3>
+                <label>Correo</label>
+                <input type="text" [(ngModel)]="usuario.correo" name="correo" class="form-control">
+                <label>Contraseña</label>
+                <input type="password" [(ngModel)]="usuario.password" name="password" class="form-control">
+                <button type="submit" class="btn salmon-outline btn-block mt-3">Ingresar</button>
+              </form>
+              <div class="row mt-2">
+                <div class="col-12 text-center">
+                  <p>Tambien puedes iniciar sesión con</p>
+
+                  <button class="btn salmon-outline border-0" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i class="fab fa-twitter-square fa-2x"></i></button>
+                  <button class="btn salmon-outline border-0" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i class="fab fa-facebook-square fa-2x"></i></button>
+                  <button class="btn salmon-outline border-0" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i class="fab fa-instagram-square fa-2x"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item mr-1">
+        <a class="nav-link btn btn-light" [routerLink]="['/registro']">¡Da a conocer tu emprendimiento!</a>
+      </li>
+    </ul>
+  </div>
+</nav>

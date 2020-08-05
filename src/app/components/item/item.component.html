@@ -1,0 +1,40 @@
+<div class="card salmon-outline">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <h5 class="card-title">{{perfil.nombre}}</h5>
+            </div>
+            <div class="col-6 text-right">
+                <span class="font-weight-light">{{perfil.usuario.ciudad.region.nombre}}/</span>
+                <span class="font-weight-light">{{perfil.usuario.ciudad.nombre}}/</span>
+                <span class="font-weight-light">Artesania</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <img src="assets/images/no-image.jpg" alt="Logo" class="img-thumbnail" style="width: 8rem;">
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-12">
+                        <p>{{perfil.descripcion}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-right">
+                        <a href="#" class="btn salmon" [routerLink]="['/perfil', perfil._id]">¡Vitrinear!</a>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a *ngIf="perfil.facebookUrl" target="_blank" [href]="perfil.facebookUrl" class="btn salmon-outline border-0"><i
+                                class="fab fa-facebook-square fa-2x"></i></a>
+                        <a *ngIf="perfil.twitterUrl" target="_blank" [href]="perfil.twitterUrl" class="btn salmon-outline border-0"><i class="fab fa-twitter-square fa-2x"></i></a>
+                        <a *ngIf="perfil.instagramUrl" target="_blank" [href]="perfil.instagramUrl" class="btn salmon-outline border-0"><i
+                                class="fab fa-instagram-square fa-2x"></i></a>
+                        <a target="_blank" [href]="'https://wa.me/56978504418'" class="btn salmon-outline border-0"><i
+                                class="fab fa-whatsapp-square fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

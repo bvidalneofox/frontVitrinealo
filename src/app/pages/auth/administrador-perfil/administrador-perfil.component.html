@@ -1,0 +1,140 @@
+<div class="row" *ngIf="!perfil._id">
+    <div class="col-12">
+        <div class="alert salmon text-center" role="alert">
+            Bienvenido <b>{{_loginService.usuario.nombre}}</b>, parece que aún no cuentas con un perfil de
+            emprendimiento creado, te
+            ayudaremos a crear uno para que comiences el negocio de tus sueños.
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="perfil._id">
+    <div class="col-12">
+        <div class="alert salmon text-center" role="alert" [ngStyle]="{'background': perfil.color}">
+            ¡Bienvenido <b>{{_loginService.usuario.nombre}}</b>, desde aquí puedes editar tú perfil las veces que
+            quieras y tambien ir añadiendo nuevos productos para dar a conocer a tus clientes!
+        </div>
+    </div>
+</div>
+
+<!-- ROW CREACION DE PERFIL -->
+<div class="row" *ngIf="!perfil._id">
+    <div class="col-12">
+        <div class="card salmon-outline">
+            <div class="card-body">
+                <form #f="ngForm" (submit)="setPerfil()">
+                    <h4 class="card-title">Perfil</h4>
+                    <label>Nombre</label>
+                    <input type="text" [(ngModel)]="perfil.nombre" name="nombre" class="form-control" required>
+                    <label>Descripcion</label>
+                    <input type="text" [(ngModel)]="perfil.descripcion" name="descripcion" class="form-control"
+                        required>
+                    <label>Color que representa mi empresa/negocio</label>
+                    <input type="color" [(ngModel)]="perfil.color" name="color" class="form-control">
+                    <label>Enlace a su Facebook (Opcional)</label>
+                    <input type="text" [(ngModel)]="perfil.facebookUrl" name="facebookUrl" class="form-control">
+                    <label>Enlace a su Twitter (Opcional)</label>
+                    <input type="text" [(ngModel)]="perfil.twitterUrl" name="twitterUrl" class="form-control">
+                    <label>Enlace a su Instagram (Opcional)</label>
+                    <input type="text" [(ngModel)]="perfil.instagramUrl" name="instagramUrl" class="form-control">
+                    <label>Enlace a su Pagina Web (Opcional)</label>
+                    <input type="text" class="form-control">
+                    <label>Numero Contacto</label>
+                    <input type="text" [(ngModel)]="perfil.contacto" name="contacto" class="form-control">
+                    <button [disabled]="f.invalid" type="submit" class="btn salmon-outline btn-block mt-3">¡Registrar mi
+                        Perfil!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myGroup" *ngIf="perfil._id">
+
+    <div class="row">
+
+        <div class="col-6">
+            <button class="btn salmon-outline btn-block" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}" type="button" data-toggle="collapse"
+                data-target="#collapsePerfil" aria-expanded="false" aria-controls="collapsePerfil">
+                Vista previa de mi Perfil
+            </button>
+        </div>
+
+        <div class="col-6">
+            <button class="btn salmon-outline btn-block" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}" type="button" data-toggle="collapse"
+                data-target="#collapseProductos" aria-expanded="false" aria-controls="collapseProductos">
+                Ver mis productos
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- ROW PERFIL ACTUAL -->
+    <div class="collapse" id="collapsePerfil" data-parent="#myGroup">
+        <div class="mt-3">
+            <app-perfil-componente [perfil]="perfil"></app-perfil-componente>
+        </div>
+    </div>
+
+    <!-- ROW PRODUCTOS ACTUALES -->
+    <div class="collapse" id="collapseProductos" data-parent="#myGroup">
+        <div class="mt-3">
+            <app-productos [productos]="productos" [color]="perfil.color"></app-productos>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-4" *ngIf="perfil._id">
+    <div class="col-md-6">
+        <div class="card salmon-outline" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">
+            <div class="card-body">
+                <h3 class="card-title">Editar Perfil</h3>
+                <hr>
+                <form #f (submit)="updatePerfil(f)">
+                    <label>Nombre</label>
+                    <input type="text" [(ngModel)]="perfil.nombre" name="nombre" class="form-control" required>
+                    <label>Descripcion</label>
+                    <input type="text" [(ngModel)]="perfil.descripcion" name="descripcion" class="form-control"
+                        required>
+                    <label>Color que representa mi empresa/negocio</label>
+                    <input type="color" [(ngModel)]="perfil.color" name="color" class="form-control">
+                    <label>Enlace a su Facebook (Opcional)</label>
+                    <input type="text" [(ngModel)]="perfil.facebookUrl" name="facebookUrl" class="form-control">
+                    <label>Enlace a su Twitter (Opcional)</label>
+                    <input type="text" [(ngModel)]="perfil.twitterUrl" name="twitterUrl" class="form-control">
+                    <label>Enlace a su Instagram (Opcional)</label>
+                    <input type="text" [(ngModel)]="perfil.instagramUrl" name="instagramUrl" class="form-control">
+                    <label>Enlace a su Pagina Web (Opcional)</label>
+                    <input type="text" class="form-control">
+                    <label>Numero Contacto</label>
+                    <input type="text" [(ngModel)]="perfil.contacto" name="contacto" class="form-control">
+                    <button [disabled]="f.invalid" type="submit" class="btn salmon-outline btn-block mt-3" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">Actualizar
+                        Perfil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mt-3 mt-md-0">
+        <div class="card salmon-outline" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">
+            <div class="card-body">
+                <h3 class="card-title">Nuevo Producto</h3>
+                <hr>
+                <form #f="ngForm" (submit)="setProducto(f)">
+                    <label>Nombre Producto/Servicio</label>
+                    <input type="text" [(ngModel)]="producto.titulo" name="nombre" class="form-control">
+                    <label>Descripcion</label>
+                    <textarea class="form-control" [(ngModel)]="producto.descripcion" name="descripcion" rows="4"
+                        style="resize: none;"></textarea>
+                    <label>Precio</label>
+                    <input type="number" [(ngModel)]="producto.precio" name="precio" class="form-control">
+                    <label>Foto</label>
+                    <br>
+                    <input type="file" (change)="seleccionImagen($event.target.files[0])" name="imagenProducto">
+                    <button type="submit" class="btn salmon-outline btn-block mt-3" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">Ingresar Nuevo Producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

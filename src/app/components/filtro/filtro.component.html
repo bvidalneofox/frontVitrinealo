@@ -1,0 +1,16 @@
+<div class="card salmon-outline">
+    <div class="card-body">
+        <h5 class="card-title">Filtrador</h5>
+        <label>Region</label>
+        <select class="form-control" (change)="_comunaService.changeRegion($event.target.value)">
+            <option value="" selected disabled hidden>--Seleccione--</option>
+            <option *ngFor="let itemRegion of _regionService.regiones" [value]="itemRegion._id">{{itemRegion.nombre}}</option>
+        </select>
+        <label>Comuna</label>
+        <select class="form-control">
+            <option value="" selected disabled hidden>--Seleccione--</option>
+            <option *ngFor="let itemComuna of _comunaService.comunas" [value]="itemComuna._id">{{itemComuna.nombre}}</option>
+        </select>
+        <button class="btn salmon-outline btn-block mt-4" [routerLink]="['/catalogo']">Busqueda</button>
+    </div>
+</div>

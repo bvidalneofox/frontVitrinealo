@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    overflow-x: hidden;
+}
+
+/* 4287f5 */
+
+.salmon {
+    background: #521642;
+    color: white;
+}
+
+.salmon-text {
+    color: #521642;
+}
+
+.salmon-outline {
+    border-color: #521642;
+    color: #521642;
+}
+
+.rounded-50 {
+    border-radius: 50px;
+}

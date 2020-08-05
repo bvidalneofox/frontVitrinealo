@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-12">
+        <div class="alert salmon text-center" role="alert">
+            <b>¡Bienvenido al registro de emprendedores!</b> Aquí te guiaremos paso a paso en la creación de tu usuario
+            y perfil, primero dinos quien eres.
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card salmon-outline">
+            <div class="card-body">
+                <form ngNativeValidate #f="ngForm" (submit)="setUsuario(f)">
+                    <h4 class="card-title">Registro</h4>
+                    <label>Nombre Completo</label>
+                    <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name="nombre" required>
+                    <label>Correo</label>
+                    <input type="email" class="form-control" [(ngModel)]="usuario.correo" name="correo" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Región</label>
+                            <select class="form-control" required (change)="_comunaService.changeRegion($event.target.value)">
+                                <option value="" selected disabled hidden>--Seleccione--</option>
+                                <option *ngFor="let itemRegion of _regionService.regiones" [value]="itemRegion._id">{{itemRegion.nombre}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Comuna</label>
+                            <select class="form-control" [(ngModel)]="usuario.ciudad" name="comuna" required>
+                                <option value="" selected disabled hidden>--Seleccione--</option>
+                                <option *ngFor="let itemComuna of _comunaService.comunas" [value]="itemComuna._id">{{itemComuna.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label>Contraseña</label>
+                    <input type="password" class="form-control" [(ngModel)]="usuario.password" name="password" required>
+                    <label>Vuelva a Escribir la Contraseña</label>
+                    <input type="password" class="form-control" ngModel name="password2" required>
+                    <button type="submit" class="btn salmon-outline btn-block mt-3" [disabled]="f.invalid">¡Registrarme!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

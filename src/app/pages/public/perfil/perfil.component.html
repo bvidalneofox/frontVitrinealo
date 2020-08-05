@@ -1,0 +1,9 @@
+<app-perfil-componente [perfil]="perfil"></app-perfil-componente>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h3 class="salmon-text" [ngStyle]="{'color': perfil.color}">¡Nuestros Ultimos Productos!</h3>
+        <br>
+        <app-productos [productos]="productos" [color]="perfil.color"></app-productos>
+    </div>
+</div>
