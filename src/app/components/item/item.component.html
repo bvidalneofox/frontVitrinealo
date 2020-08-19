@@ -5,14 +5,14 @@
                 <h5 class="card-title">{{perfil.nombre}}</h5>
             </div>
             <div class="col-6 text-right">
-                <span class="font-weight-light">{{perfil.usuario.ciudad.region.nombre}}/</span>
-                <span class="font-weight-light">{{perfil.usuario.ciudad.nombre}}/</span>
-                <span class="font-weight-light">Artesania</span>
+                <!-- <span class="font-weight-light">{{perfil.usuario.ciudad.region.nombre}}/</span> -->
+                <!-- <span class="font-weight-light">{{perfil.usuario.ciudad.nombre}}/</span> -->
+                <span class="font-weight-light">Categoria</span>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <img src="assets/images/no-image.jpg" alt="Logo" class="img-thumbnail" style="width: 8rem;">
+                <img [src]="perfil.bannerUrl | imagenes:'perfiles'" alt="Logo" class="img-thumbnail" style="width: 8rem;">
             </div>
             <div class="col-md-9">
                 <div class="row">

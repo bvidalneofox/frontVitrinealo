@@ -40,6 +40,7 @@ export class PerfilComponent implements OnInit {
   getProductos(id: string){
     this._productosService.getPublicacionesPerfil(id).subscribe(response => {
       this.productos = response.publicaciones;
+      this.productos = this.productos.filter(producto => producto.estado == 'A');
     });
   }
 

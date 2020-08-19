@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../models/usuario.model';
 import { Observable } from 'rxjs';
@@ -13,7 +14,10 @@ export class LoginService {
   token: string = '';
   usuario: Usuario = new Usuario();
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    public jwtHelper: JwtHelperService
+    ) {
     this.cargarStorage();
   }
 
@@ -29,6 +33,27 @@ export class LoginService {
       })
     );
 
+  }
+
+  loginGoogle(token: string) {
+
+    let url = `${environment.url}login/google`;
+
+    return this.http.post(url, { token })
+    .pipe(
+      map((resp: any) => {
+        console.log(resp);
+        this.guardarStorage(resp.token, resp.usuario);
+        return resp;
+      })
+    );
+
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    console.log(!this.jwtHelper.isTokenExpired(token));
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
   guardarStorage(token: string, usuario: Usuario){

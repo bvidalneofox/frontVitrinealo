@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-6">
+        <h3 class="salmon-text">Mantenedor Perfiles</h3>
+    </div>
+    <div class="col-6 text-right">
+        <a class="salmon-text cursor h3" [routerLink]="['/moderacion/inicio']"><i class="fas fa-arrow-left"></i> Volver</a>
+    </div>
+</div>
+<hr>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover text-center">
+        <thead class="salmon">
+            <tr>
+                <th>Fecha Creación</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Enlaces</th>
+                <th>Color</th>
+                <th>Banner</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let itemPerfil of perfiles">
+                <td>{{itemPerfil.createdAt | date:'short'}}</td>
+                <td>
+                    <span *ngIf="!modoEdicion">{{itemPerfil.nombre}}</span>
+                    <input *ngIf="modoEdicion" type="text" class="form-control" name="nombre" [(ngModel)]="itemPerfil.nombre">
+                </td>
+                <td>
+                    <span *ngIf="!modoEdicion">{{itemPerfil.descripcion}}{{itemPerfil.publico}}</span>
+                    <textarea *ngIf="modoEdicion" cols="30" rows="5" class="form-control"
+                        name="descripcion" [(ngModel)]="itemPerfil.descripcion"></textarea>
+                </td>
+                <td>
+                    <a *ngIf="itemPerfil.facebookUrl && !modoEdicion" target="_blank" [href]="itemPerfil.facebookUrl"
+                        class="btn salmon-outline border-0"><i class="fab fa-facebook-square fa-2x"></i></a>
+                    <a *ngIf="itemPerfil.instagramUrl && !modoEdicion" target="_blank" [href]="itemPerfil.instagramUrl"
+                        class="btn salmon-outline border-0"><i class="fab fa-instagram-square fa-2x"></i></a>
+                    <a *ngIf="itemPerfil.contacto && !modoEdicion" target="_blank"
+                        [href]="'https://wa.me/56' + itemPerfil.contacto" class="btn salmon-outline border-0"><i
+                            class="fab fa-whatsapp-square fa-2x"></i></a>
+                    <input *ngIf="itemPerfil.facebookUrl && modoEdicion" type="text" class="form-control"
+                        name="facebookUrl" [(ngModel)]="itemPerfil.facebookUrl">
+                    <input *ngIf="itemPerfil.instagramUrl && modoEdicion" type="text" class="form-control"
+                        name="instagramUrl" [(ngModel)]="itemPerfil.instagramUrl">
+                    <input *ngIf="itemPerfil.contacto && modoEdicion" type="text" class="form-control"
+                        name="contacto" [(ngModel)]="itemPerfil.contacto">
+                </td>
+                <td [style]="'background-color:' + itemPerfil.color">
+                    <span *ngIf="!modoEdicion">{{itemPerfil.color}}</span>
+                    <input *ngIf="modoEdicion" type="color" class="form-control" name="color" [(ngModel)]="itemPerfil.color">
+                </td>
+                <td>
+                    <img style="width: 5rem;" [src]="'http://127.0.0.1:3000/img/perfiles/' + itemPerfil.bannerUrl">
+                </td>
+                <td>
+                    <button class="btn salmon btn-block m-1" (click)="testSi(itemPerfil)">Aceptar</button>
+                    <button class="btn salmon btn-block m-1" (click)="testNo(itemPerfil)">Rechazar</button>
+                    <button class="btn salmon btn-block m-1" (click)="modoEdicion = !modoEdicion">Editar</button>
+                    <button *ngIf="modoEdicion" class="btn salmon-outline btn-block m-1" (click)="actualizarPerfil(itemPerfil)">Aplicar Cambios</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-6">
+        <h3 class="salmon-text">Mantenedor Productos</h3>
+    </div>
+    <div class="col-6 text-right">
+        <a class="salmon-text cursor h3" [routerLink]="['/moderacion/inicio']"><i class="fas fa-arrow-left"></i> Volver</a>
+    </div>
+</div>
+<hr>
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered text-center">
+        <thead class="salmon">
+            <tr>
+                <th>Fecha Creación</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Foto</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let itemProductos of productos">
+                <td [class.bg-success]="itemProductos.publico" [class.bg-danger]="itemProductos.estado == 'R'">{{itemProductos.createdAt | date:'short'}}</td>
+                <td>
+                    <span *ngIf="!modoEdicion">{{itemProductos.titulo}}</span>
+                    <input *ngIf="modoEdicion" type="text" class="form-control" [value]="itemProductos.titulo">
+                </td>
+                <td>
+                    <span *ngIf="!modoEdicion">{{itemProductos.descripcion}}</span>
+                    <textarea *ngIf="modoEdicion" class="form-control" cols="30" rows="5" [value]="itemProductos.descripcion"></textarea>
+                </td>
+                <td>
+                    <span *ngIf="!modoEdicion">{{itemProductos.precio | currency:'CLP'}}</span>
+                    <input *ngIf="modoEdicion" type="number" class="form-control" [value]="itemProductos.precio">
+                </td>
+                <td>
+                    <img style="width: 5rem;" [src]="'http://127.0.0.1:3000/img/productos/' + itemProductos.foto1Url">
+                </td>
+                <td>
+                    <button class="btn salmon btn-block m-1" (click)="testSi(itemProductos)">Aceptar</button>
+                    <button class="btn salmon btn-block m-1" (click)="testNo(itemProductos)">Rechazar</button>
+                    <button class="btn salmon btn-block m-1" (click)="modoEdicion = !modoEdicion">Editar</button>
+                    <button *ngIf="modoEdicion" class="btn salmon-outline btn-block m-1" (click)="actualizarProducto(itemProductos)">Aplicar Cambios</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

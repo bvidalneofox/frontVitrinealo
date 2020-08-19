@@ -12,6 +12,9 @@ export class Publicacion{
         public foto3Url?: string,
         public publico?: boolean,
         public perfil?: Perfil,
+        public contador?: number,
+        public mensaje?: string,
+        public estado?: string,
         public createdAt?: string
     ){}
 

@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-6">
+        <h3 class="salmon-text">Errores Producidos</h3>
+    </div>
+    <div class="col-6 text-right">
+        <a class="salmon-text cursor h3" [routerLink]="['/moderacion/inicio']"><i class="fas fa-arrow-left"></i> Volver</a>
+    </div>
+</div>
+<hr>
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered text-center">
+        <thead class="salmon">
+            <tr>
+                <th>Fecha</th>
+                <th>Name</th>
+                <th>Url</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let itemErrores of errores">
+                <td>{{itemErrores.createdAt | date:'short'}}</td>
+                <td>{{itemErrores.name}}</td>
+                <td>{{itemErrores.url}}</td>
+                <td>{{itemErrores.error}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

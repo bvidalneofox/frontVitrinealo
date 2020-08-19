@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-6">
+        <h3 class="salmon-text" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">Mis Productos</h3>
+    </div>
+    <div class="col-6 text-right">
+        <a class="salmon-text cursor h3" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}" [routerLink]="['/miPerfil/inicio']"><i class="fas fa-arrow-left"></i> Volver</a>
+    </div>
+</div>
+<hr>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card salmon-outline" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">
+            <div class="card-body">
+                <h3 class="card-title">Nuevo Producto</h3>
+                <hr>
+                <form ngNativeValidate #formProducto="ngForm" (submit)="setProducto(formProducto)">
+                    <label>Nombre Producto/Servicio</label>
+                    <input type="text" [(ngModel)]="producto.titulo" name="nombre" class="form-control" required>
+                    <label>Descripcion</label>
+                    <textarea class="form-control" [(ngModel)]="producto.descripcion" name="descripcion" rows="4"
+                        style="resize: none;" required></textarea>
+                    <label>Precio</label>
+                    <input type="number" [(ngModel)]="producto.precio" name="precio" class="form-control" required>
+                    <label>Foto</label>
+                    <br>
+                    <input type="file" (change)="seleccionImagen($event.target.files[0])" name="imagenProducto">
+                    <button [disabled]="formProducto.invalid" type="submit" class="btn salmon-outline btn-block mt-3"
+                        [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">Ingresar Nuevo
+                        Producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ROW PRODUCTOS ACTUALES -->
+<div class="mt-3">
+    <app-productos [productos]="productos" [color]="perfil.color" [administracion]="true"></app-productos>
+</div>

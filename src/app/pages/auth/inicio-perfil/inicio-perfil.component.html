@@ -1,0 +1,64 @@
+<div class="row" *ngIf="!perfil._id">
+    <div class="col-12">
+        <div class="alert salmon text-center" role="alert">
+            Bienvenido <b>{{_loginService.usuario.nombre}}</b>, parece que aún no cuentas con un perfil de
+            emprendimiento creado, te
+            ayudaremos a crear uno para que comiences el negocio de tus sueños.
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="perfil._id">
+    <div class="col-12">
+        <div class="alert salmon text-center" role="alert" [ngStyle]="{'background': perfil.color}">
+            ¡Bienvenido <b>{{_loginService.usuario.nombre}}</b>, desde aquí puedes editar tú perfil las veces que
+            quieras y tambien ir añadiendo nuevos productos para dar a conocer a tus clientes!
+        </div>
+    </div>
+</div>
+
+<!-- ROW CREACION DE PERFIL -->
+<div class="row" *ngIf="!perfil._id">
+    <div class="col-12">
+        <div class="card salmon-outline">
+            <div class="card-body">
+                <form ngNativeValidate #formCreacion="ngForm" (submit)="setPerfil(formCreacion)">
+                    <h4 class="card-title">Perfil</h4>
+                    <label>Nombre</label>
+                    <input type="text" [(ngModel)]="perfil.nombre" name="nombre" class="form-control" required>
+                    <label>Descripcion</label>
+                    <input type="text" [(ngModel)]="perfil.descripcion" name="descripcion" class="form-control"
+                        required>
+                    <label>Color que representa mi empresa/negocio</label>
+                    <input type="color" [(ngModel)]="perfil.color" name="color" class="form-control">
+                    <label>Enlace a su Facebook (Opcional)</label>
+                    <input type="text" [(ngModel)]="perfil.facebookUrl" name="facebookUrl" class="form-control">
+                    <label>Enlace a su Twitter (Opcional)</label>
+                    <input type="text" [(ngModel)]="perfil.twitterUrl" name="twitterUrl" class="form-control">
+                    <label>Enlace a su Instagram (Opcional)</label>
+                    <input type="text" [(ngModel)]="perfil.instagramUrl" name="instagramUrl" class="form-control">
+                    <label>Enlace a su Pagina Web (Opcional)</label>
+                    <input type="text" class="form-control">
+                    <label>Numero Contacto</label>
+                    <input type="text" [(ngModel)]="perfil.contacto" name="contacto" class="form-control">
+                    <button [disabled]="formCreacion.invalid" type="submit"
+                        class="btn salmon-outline btn-block mt-3">¡Registrar mi
+                        Perfil!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MENU BOTONES -->
+<div class="row" *ngIf="perfil._id">
+    <div class="col-md-4">
+        <app-card-navigation [titulo]="'Mi Pagina'" [icon]="'fas fa-laptop-house fa-4x'" [ruta]="'/miPerfil/administracionPerfil'" [color]="perfil.color"></app-card-navigation>
+    </div>
+    <div class="col-md-4 mt-3 mt-md-0">
+        <app-card-navigation [titulo]="'Mis Productos'" [icon]="'fas fa-archive fa-4x'" [ruta]="'/miPerfil/administracionProductos'" [color]="perfil.color"></app-card-navigation>
+    </div>
+    <div class="col-md-4 mt-3 mt-md-0">
+        <app-card-navigation [titulo]="'Estadisticas'" [icon]="'fas fa-poll fa-4x'" [ruta]="'/miPerfil/estadisticasPerfil'" [color]="perfil.color"></app-card-navigation>
+    </div>
+</div>

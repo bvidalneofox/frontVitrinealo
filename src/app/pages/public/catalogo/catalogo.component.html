@@ -13,13 +13,39 @@
 
         <app-loading *ngIf="loading"></app-loading>
 
-        <div *ngFor="let itemPerfil of perfiles">
-            <div class="mt-1"></div>
-            <app-item [perfil]="itemPerfil"></app-item>
-            <div class="mb-1"></div>
+        <div *ngIf="perfiles.length === 0" class="alert alert-success text-center salmon" role="alert">
+            <h4 class="alert-heading mt-3"><i class="fas fa-sad-tear fa-3x"></i></h4>
+            <p class="h4">Lamentamos informar que no hay negocios para vitrinear en el area seleccionada, pronto
+                tendremos un montón para que puedas ¡vitrinear!</p>
         </div>
 
-        <div class="row text-center">
+        <div *ngIf="perfiles.length !== 0" class="card salmon-outline">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <button class="btn btn-block" [class.salmon]="vistaPerfil" [class.salmon-outline]="!vistaPerfil" (click)="vistaPerfil = true">Ver Negocios</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-block" [class.salmon]="!vistaPerfil" [class.salmon-outline]="vistaPerfil" (click)="vistaPerfil = false">Ver
+                            Productos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-2" *ngIf="vistaPerfil">
+            <div *ngFor="let itemPerfil of perfiles">
+                <div class="mt-1"></div>
+                <app-item [perfil]="itemPerfil"></app-item>
+                <div class="mb-1"></div>
+            </div>
+        </div>
+
+        <div class="mt-2" *ngIf="!vistaPerfil">
+            <app-productos [productos]="publicaciones"></app-productos>
+        </div>
+
+        <!-- <div class="row text-center">
             <div class="col-12">
                 <div class="card salmon-outline">
                     <div class="card-body">
@@ -27,7 +53,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
     <div class="col-md-3">

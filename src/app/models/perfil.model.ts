@@ -14,7 +14,11 @@ export class Perfil{
         public color?: string,
         public bannerUrl?: string,
         public publico?: boolean,
-        public usuario?: Usuario
+        public usuario?: Usuario,
+        public contador?: number,
+        public mensaje?: string,
+        public estado?: string,
+        public createdAt?: string
     ){}
 
 }

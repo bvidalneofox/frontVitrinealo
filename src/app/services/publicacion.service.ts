@@ -19,7 +19,7 @@ export class PublicacionService {
 
   }
 
-  getPublicaciones(){
+  getPublicaciones(): Observable<any>{
 
     let url = `${environment.url}publicacion`;
 
@@ -37,7 +37,7 @@ export class PublicacionService {
 
   actualizarPublicacion(publicacion: Publicacion){
 
-    let url =  `${environment.url}publicacion`;
+    let url =  `${environment.url}publicacion/${publicacion._id}`;
 
     return this.http.put(url, publicacion);
 

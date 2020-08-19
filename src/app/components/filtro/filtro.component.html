@@ -7,10 +7,10 @@
             <option *ngFor="let itemRegion of _regionService.regiones" [value]="itemRegion._id">{{itemRegion.nombre}}</option>
         </select>
         <label>Comuna</label>
-        <select class="form-control">
+        <select class="form-control" [(ngModel)]="comunaId" name="comuna">
             <option value="" selected disabled hidden>--Seleccione--</option>
             <option *ngFor="let itemComuna of _comunaService.comunas" [value]="itemComuna._id">{{itemComuna.nombre}}</option>
         </select>
-        <button class="btn salmon-outline btn-block mt-4" [routerLink]="['/catalogo']">Busqueda</button>
+        <button [disabled]="!comunaId" class="btn salmon-outline btn-block mt-4" [routerLink]="['/catalogo', comunaId]">Busqueda</button>
     </div>
 </div>

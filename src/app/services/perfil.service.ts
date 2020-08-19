@@ -26,6 +26,14 @@ export class PerfilService {
     let url = `${environment.url}perfil`;
 
     return this.http.get(url);
+    
+  }
+
+  getPerfilesPorComuna(id: string): Observable<any>{
+
+    let url = `${environment.url}perfil/perfilPorComuna/${id}`;
+
+    return this.http.get(url);
 
   }
 

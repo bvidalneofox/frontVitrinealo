@@ -1,5 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light salmon" [ngStyle]="{'background': _perfilService.color}">
-  <a class="navbar-brand text-white font-weight-bold" [routerLink]="['/']">¡Vitrinealo!</a><span class="font-weight-light">Una cosita de neofox</span>
+  <a class="navbar-brand text-white font-weight-bold" href="#">
+    <img src="assets/images/vitrinealo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Vitrinealo
+  </a>
+  <!-- <a class="navbar-brand text-white font-weight-bold" [routerLink]="['/']">¡Vitrinealo!</a><span
+    class="font-weight-light">Una cosita de neofox</span> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,13 +12,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
 
-      <li class="nav-item dropdown mr-1">
-        <a class="nav-link btn salmon-outline dropdown-toggle" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}" href="#" id="navbarDropdown" role="button"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <!-- LOGIN -->
+      <li class="nav-item dropdown mr-1" *ngIf="!_loginService.usuario._id">
+        <a class="nav-link btn salmon-outline dropdown-toggle text-white"
+          [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}" href="#" id="navbarDropdown"
+          role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           ¡Iniciar Sesión!
         </a>
-        <div class="dropdown-menu salmon-outline animate__animated animate__flipInY" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}" aria-labelledby="navbarDropdown"
-          style="width: 20rem;">
+        <div class="dropdown-menu salmon-outline animate__animated animate__flipInY"
+          [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"
+          aria-labelledby="navbarDropdown" style="width: 20rem;">
           <div class="card border-0">
             <div class="card-body">
               <form #f="ngForm" (submit)="login()">
@@ -28,9 +36,56 @@
                 <div class="col-12 text-center">
                   <p>Tambien puedes iniciar sesión con</p>
 
-                  <button class="btn salmon-outline border-0" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i class="fab fa-twitter-square fa-2x"></i></button>
-                  <button class="btn salmon-outline border-0" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i class="fab fa-facebook-square fa-2x"></i></button>
-                  <button class="btn salmon-outline border-0" [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i class="fab fa-instagram-square fa-2x"></i></button>
+                  <button type="submit" id="btnGoogle" class="btn salmon-outline border-0"
+                    [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i
+                      class="fab fa-google-plus-square fa-2x"></i></button>
+                  <button class="btn salmon-outline border-0"
+                    [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i
+                      class="fab fa-facebook-square fa-2x"></i></button>
+                  <button class="btn salmon-outline border-0"
+                    [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i
+                      class="fab fa-instagram-square fa-2x"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- Notificaciones -->
+      <li class="nav-item dropdown mr-1" *ngIf="_loginService.usuario._id">
+        <a class="nav-link btn salmon-outline dropdown-toggle text-white"
+          [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}" href="#" id="navbarDropdown"
+          role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"></i>&nbsp;<span class="badge badge-light">{{notificaciones.length}}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right salmon-outline animate__animated animate__flipInY"
+          [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"
+          aria-labelledby="navbarDropdown" style="width: 20rem; padding: 0;">
+          <div class="list-group" *ngFor="let itemNotificacion of notificaciones">
+            <button type="button" class="list-group-item list-group-item-action">
+              {{itemNotificacion.mensaje}} <br>
+              <span class="badge salmon badge-pill ml-auto">{{itemNotificacion.createdAt}}</span>
+            </button>
+          </div>
+        </div>
+      </li>
+
+      <!-- Perfil -->
+      <li class="nav-item dropdown mr-1" *ngIf="_loginService.usuario._id">
+        <a class="nav-link btn salmon-outline dropdown-toggle text-white"
+          [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}" href="#" id="navbarDropdown"
+          role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Bienvenido {{_loginService.usuario.nombre}}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right salmon-outline animate__animated animate__flipInY"
+          [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"
+          aria-labelledby="navbarDropdown" style="width: 20rem;">
+          <div class="card border-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <button class="btn salmon-outline btn-block" [routerLink]="['/miPerfil/inicio']">Mi Perfil</button>
+                  <button class="btn salmon-outline btn-block" (click)="logout()">Cerrar Sesión</button>
                 </div>
               </div>
             </div>
@@ -39,7 +94,9 @@
       </li>
 
       <li class="nav-item mr-1">
-        <a class="nav-link btn btn-light" [routerLink]="['/registro']">¡Da a conocer tu emprendimiento!</a>
+        <a class="nav-link btn btn-light" [routerLink]="['/registro']" *ngIf="!_loginService.usuario._id">¡Da a conocer
+          tu
+          emprendimiento!</a>
       </li>
     </ul>
   </div>

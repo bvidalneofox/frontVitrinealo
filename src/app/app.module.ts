@@ -22,6 +22,10 @@ import { AuthInterceptorService } from './services/interceptores/auth-intercepto
 import { PerfilComponenteComponent } from './components/perfil-componente/perfil-componente.component';
 import { ImagenesPipe } from './pipes/imagenes.pipe';
 import { LoadingComponent } from './components/loading/loading.component';
+import { CardNavigationComponent } from './components/card-navigation/card-navigation.component';
+import { InicioPerfilComponent } from './pages/auth/inicio-perfil/inicio-perfil.component';
+import { AdministradorProductosComponent } from './pages/auth/administrador-productos/administrador-productos.component';
+import { EstadisticasPerfilComponent } from './pages/auth/estadisticas-perfil/estadisticas-perfil.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +43,20 @@ import { LoadingComponent } from './components/loading/loading.component';
     AdministradorPerfilComponent,
     PerfilComponenteComponent,
     ImagenesPipe,
-    LoadingComponent
+    LoadingComponent,
+    CardNavigationComponent,
+    InicioPerfilComponent,
+    AdministradorProductosComponent,
+    EstadisticasPerfilComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
+  ],
+  exports: [
+    CardNavigationComponent
   ],
   providers: [
     {

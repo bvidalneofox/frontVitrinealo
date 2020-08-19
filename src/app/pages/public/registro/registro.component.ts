@@ -33,7 +33,7 @@ export class RegistroComponent implements OnInit {
     }
     this._usuarioService.setUsuario(this.usuario).subscribe(response => {
       Swal.fire('Felicitaciones', 'Seras redirigido a tu nuevo perfil', 'success')
-      this.route.navigate(['/miPerfil']);
+      this.route.navigate(['/miPerfil/inicio']);
     });
   }
 

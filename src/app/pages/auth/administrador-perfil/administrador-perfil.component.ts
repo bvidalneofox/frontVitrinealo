@@ -16,10 +16,8 @@ import { UploadService } from 'src/app/services/upload.service';
 export class AdministradorPerfilComponent implements OnInit {
 
   perfil: Perfil = new Perfil();
-  producto: Publicacion = new Publicacion();
-  productos: Publicacion[] = [];
 
-  imagenSubir: File;
+  imagenSubirPerfil: File;
 
   constructor(
     public _perfilService: PerfilService,
@@ -32,69 +30,43 @@ export class AdministradorPerfilComponent implements OnInit {
     this.getPerfilIdUsuario();
   }
 
-  getPerfilIdUsuario(){
-    this._perfilService.getPerfilIdUsuario(this._loginService.usuario._id).subscribe(response => {
-      this.perfil = response.perfil;
-      this._perfilService.color = response.perfil.color;
-      this.getPublicacionesPerfil();
-    });
-  }
+  updatePerfil(f: NgForm) {
 
-  getPublicacionesPerfil(){
-    this._publicacionService.getPublicacionesPerfil(this.perfil._id).subscribe(response => {
-      this.productos = response.publicaciones;
-    });
-  }
-
-  updatePerfil(f: NgForm){
-    this._perfilService.actualizarPerfil(this.perfil).subscribe(response => {
-      console.log(response);
-    });
-  }
-
-  setPerfil(){
-    this._perfilService.setPerfil(this.perfil).subscribe(response => {
-      Swal.fire('Felicitaciones', '¡Ya ha creado su perfil!', 'success');
-      this.getPerfilIdUsuario();
-    });
-  }
-
-  setProducto(f: NgForm){
-
-    if(f.invalid){
-      Swal.fire('Formulario Incompleto','Revise que no falten campos obligatorios por completar','error');
+    if (f.invalid) {
+      Swal.fire('Formulario Incompleto', 'Revise que no falten campos obligatorios por completar', 'error');
       return;
     }
 
-    let idPerfil: any = this.perfil._id;
-    this.producto.perfil = idPerfil;
+    this._perfilService.actualizarPerfil(this.perfil).subscribe((response: any) => {
+      this.subirImagen(response.body._id, 'perfiles');
+      Swal.fire('Perfil Actualizado','Su perfil se ha a ctualizado correctamente, los cambios se veran reflejados una vez que sean aprobados por los moderadores','success');
+    });
+  }
 
-    this._publicacionService.setPublicacion(this.producto).subscribe((response: any) => {
-      this.producto = new Publicacion();
-      this.subirImagen(response.body._id);
-      Swal.fire('Producto Ingresado', 'Los moderadores revisaran su producto y lo pondran publico en las proximas horas', 'success');
+  getPerfilIdUsuario() {
+    this._perfilService.getPerfilIdUsuario(this._loginService.usuario._id).subscribe(response => {
+      this.perfil = response.perfil;
+      this._perfilService.color = response.perfil.color;
     });
   }
 
   seleccionImagen(archivo: File) {
 
-    if (!archivo) {
-      this.imagenSubir = null;
-      return;
-    }
+      if (!archivo) {
+        this.imagenSubirPerfil = null;
+        return;
+      }
 
-    this.imagenSubir = archivo;
+      this.imagenSubirPerfil = archivo;
 
   }
 
-  subirImagen(idProducto: string){
-    this._uploadService.subirArchivo(this.imagenSubir, 'productos', idProducto)
+  subirImagen(idProducto: string, tipo: string) {
+    this._uploadService.subirArchivo(this.imagenSubirPerfil, tipo, idProducto)
       .then(resp => {
-        // alert('Imagen subida correctamente');
-        this.getPublicacionesPerfil();
       })
       .catch(err => {
-        // console.log('error en la carga');
+        console.log('error en la carga');
       })
   }
 
