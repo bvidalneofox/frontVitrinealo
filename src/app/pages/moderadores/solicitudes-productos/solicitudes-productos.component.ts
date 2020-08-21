@@ -48,6 +48,7 @@ export class SolicitudesProductosComponent implements OnInit {
         producto.publico = true;
         producto.estado = 'A';
         this._publicacionService.actualizarPublicacion(producto).subscribe(response => {
+          this.setNotificacion(producto, 'A');
           Swal.fire('¡Aprobado!','El perfil ahora será publico.','success');
         });
       }
@@ -73,7 +74,7 @@ export class SolicitudesProductosComponent implements OnInit {
         let mensaje: any = result.value;
         producto.mensaje = mensaje;
         this._publicacionService.actualizarPublicacion(producto).subscribe(response => {
-          this.setNotificacion(mensaje, producto.perfil.usuario);
+          this.setNotificacion(producto, 'R', mensaje);
           Swal.fire('¡Rechazado!','Se le informará al usuario el motivo por el cual se ha rechazado su producto.','success');
         });
       }
@@ -86,9 +87,13 @@ export class SolicitudesProductosComponent implements OnInit {
     });
   }
 
-  setNotificacion(mensaje: string, usuario: any){
-    this.notificacion.mensaje = mensaje;
-    this.notificacion.usuario = usuario;
+  setNotificacion(producto: Publicacion, estado: string, mensaje?: string){
+    if(estado == 'R'){
+      this.notificacion.mensaje = `Se ha rechazado la publicación: ${producto.titulo}. Motivo: ${mensaje}`;
+    }else if(estado == 'A'){
+      this.notificacion.mensaje = `Felicitaciones, su publicación: ${producto.titulo} ha sido aceptada y publicada`;
+    }
+    this.notificacion.usuario = producto.perfil.usuario;
     this._notificacionService.setNotificacion(this.notificacion).subscribe(response => {
       console.log(response);
     });

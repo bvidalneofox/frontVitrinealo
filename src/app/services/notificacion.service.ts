@@ -27,4 +27,12 @@ export class NotificacionService {
 
   }
 
+  actualizarNotificacion(notificacion: Notificacion){
+
+    let url = `${environment.url}notificacion/${notificacion._id}`;
+
+    return this.http.put(url, notificacion);
+
+  }
+
 }

@@ -27,3 +27,8 @@ body {
 .cursor {
     cursor: pointer;
 }
+
+.scroll {
+    max-height: 400px;
+    overflow-y: auto;
+}

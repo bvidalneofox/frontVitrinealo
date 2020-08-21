@@ -12,6 +12,8 @@ export class EstadisticasPerfilComponent implements OnInit {
 
   perfil: Perfil = new Perfil();
 
+  array = new Array(3);
+
   constructor(
     public _perfilService: PerfilService,
     public _loginService: LoginService

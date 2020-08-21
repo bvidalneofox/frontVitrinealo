@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   usuario: Usuario = new Usuario();
 
   notificaciones: Notificacion[] = [];
+  notificacionesNuevas: Notificacion[] = [];
 
   auth2: any;
 
@@ -82,6 +83,14 @@ export class NavbarComponent implements OnInit {
   getNotificaciones(){
     this._notificacionService.getNotificacionesUsuario(this._loginService.usuario._id).subscribe(response => {
       this.notificaciones = response.notificaciones;
+      this.notificacionesNuevas = this.notificaciones.filter(notificacion => !notificacion.revisado);
+    });
+  }
+
+  actualizarNotificacion(notificacion: Notificacion){
+    notificacion.revisado = true;
+    this._notificacionService.actualizarNotificacion(notificacion).subscribe(response => {
+      console.log(response);
     });
   }
 
