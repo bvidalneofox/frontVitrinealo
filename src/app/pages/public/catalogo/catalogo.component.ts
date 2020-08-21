@@ -42,6 +42,7 @@ export class CatalogoComponent implements OnInit {
   getPublicaciones(){
     this._publicacionesService.getPublicaciones().subscribe(response => {
       this.publicaciones = response.publicaciones;
+      this.publicaciones = this.publicaciones.filter(producto => producto.estado == 'A');
     });
   }
 
