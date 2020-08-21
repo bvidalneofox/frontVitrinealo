@@ -32,7 +32,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.googleInit();
-    this.getNotificaciones();
+    if (this._loginService.usuario._id) {
+      this.getNotificaciones();
+    }
   }
 
   googleInit() {
@@ -80,14 +82,14 @@ export class NavbarComponent implements OnInit {
     this.route.navigate(['/']);
   }
 
-  getNotificaciones(){
+  getNotificaciones() {
     this._notificacionService.getNotificacionesUsuario(this._loginService.usuario._id).subscribe(response => {
       this.notificaciones = response.notificaciones;
       this.notificacionesNuevas = this.notificaciones.filter(notificacion => !notificacion.revisado);
     });
   }
 
-  actualizarNotificacion(notificacion: Notificacion){
+  actualizarNotificacion(notificacion: Notificacion) {
     notificacion.revisado = true;
     this._notificacionService.actualizarNotificacion(notificacion).subscribe(response => {
       console.log(response);
