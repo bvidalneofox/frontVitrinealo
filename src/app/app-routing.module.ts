@@ -11,6 +11,7 @@ import { AuthMasterComponent } from './pages/auth/auth-master.component';
 import { InicioPerfilComponent } from './pages/auth/inicio-perfil/inicio-perfil.component';
 import { AdministradorProductosComponent } from './pages/auth/administrador-productos/administrador-productos.component';
 import { EstadisticasPerfilComponent } from './pages/auth/estadisticas-perfil/estadisticas-perfil.component';
+import { AdministradorDestacadosComponent } from './pages/auth/administrador-destacados/administrador-destacados.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
         { path: 'inicio', component: InicioPerfilComponent },
         { path: 'administracionPerfil', component: AdministradorPerfilComponent },
         { path: 'administracionProductos', component: AdministradorProductosComponent },
-        { path: 'estadisticasPerfil', component: EstadisticasPerfilComponent }
+        { path: 'estadisticasPerfil', component: EstadisticasPerfilComponent },
+        { path: 'destacados', component: AdministradorDestacadosComponent }
       ]
   },
   {
