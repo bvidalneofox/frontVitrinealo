@@ -52,6 +52,11 @@ export class AdministradorPerfilComponent implements OnInit {
 
   seleccionImagen(archivo: File) {
 
+    if (archivo.size > 5245329) {
+      Swal.fire('Imagen no compatible','La imagen es superior a 5mb, pruebe con una imagen de inferior peso','error');
+      return;
+    }
+
       if (!archivo) {
         this.imagenSubirPerfil = null;
         return;

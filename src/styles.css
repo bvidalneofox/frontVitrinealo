@@ -32,3 +32,11 @@ body {
     max-height: 400px;
     overflow-y: auto;
 }
+
+.modal {
+    background-color: rgba(133, 126, 126, 0.39);
+}
+
+.modal-open {
+    overflow: inherit;
+}

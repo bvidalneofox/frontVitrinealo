@@ -16,6 +16,8 @@ export class ProductosComponent implements OnInit {
 
   editor: boolean = false;
 
+  productoSeleccionado: Publicacion = new Publicacion();
+
   constructor(
     public _productosService: PublicacionService
   ) { }
@@ -30,6 +32,10 @@ export class ProductosComponent implements OnInit {
       Swal.fire('¡Actualizado!','Producto/Servicio actualizado correctamente, una vez los moderadores aprueben los cambios volverá a estar publico','success');
       this.editor = false;
     });
+  }
+
+  test(producto: Publicacion){
+    this.productoSeleccionado = producto;
   }
 
 }

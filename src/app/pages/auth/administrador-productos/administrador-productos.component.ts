@@ -65,12 +65,17 @@ export class AdministradorProductosComponent implements OnInit {
 
   seleccionImagen(archivo: File) {
 
-      if (!archivo) {
-        this.imagenSubir = null;
-        return;
-      }
+    if (archivo.size > 5245329) {
+      Swal.fire('Imagen no compatible','La imagen es superior a 5mb, pruebe con una imagen de inferior peso','error');
+      return;
+    }
 
-      this.imagenSubir = archivo;
+    if (!archivo) {
+      this.imagenSubir = null;
+      return;
+    }
+
+    this.imagenSubir = archivo;
 
   }
 

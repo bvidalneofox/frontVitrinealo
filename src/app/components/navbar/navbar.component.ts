@@ -92,7 +92,7 @@ export class NavbarComponent implements OnInit {
   actualizarNotificacion(notificacion: Notificacion) {
     notificacion.revisado = true;
     this._notificacionService.actualizarNotificacion(notificacion).subscribe(response => {
-      console.log(response);
+      this.getNotificaciones();
     });
   }
 
