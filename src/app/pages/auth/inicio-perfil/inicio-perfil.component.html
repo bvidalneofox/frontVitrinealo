@@ -62,3 +62,9 @@
         <app-card-navigation [titulo]="'Estadisticas'" [icon]="'fas fa-poll fa-4x'" [ruta]="'/miPerfil/estadisticasPerfil'" [color]="perfil.color"></app-card-navigation>
     </div>
 </div>
+<br>
+<div class="row" *ngIf="perfil._id">
+    <div class="col-md-4">
+         <app-card-navigation [titulo]="'Destacar mis productos'" [icon]="'fas fa-medal fa-4x'" [ruta]="'/miPerfil/destacados'" [color]="perfil.color"></app-card-navigation>
+    </div>
+</div>
