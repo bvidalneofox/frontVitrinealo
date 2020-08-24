@@ -27,15 +27,15 @@
         <div class="card salmon-outline border-0" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">
             <div class="card-body">
                 <h4 class="card-title">¡Contactanos!</h4>
-                <p><a [href]="'https://wa.me/56' + perfil.contacto" class="salmon-text" [ngStyle]="{'color': perfil.color}" target="_blank"><i
+                <p *ngIf="perfil.contacto"><a [href]="'https://wa.me/56' + perfil.contacto" class="salmon-text" [ngStyle]="{'color': perfil.color}" target="_blank"><i
                             class="fab fa-whatsapp-square fa-2x"></i> Escribenos a Nuestro WhatsApp</a></p>
-                <p><a [href]="perfil.facebookUrl" class="salmon-text" [ngStyle]="{'color': perfil.color}" target="_blank"><i class="fab fa-facebook-square fa-2x"></i>
+                <p *ngIf="perfil.facebookUrl"><a [href]="perfil.facebookUrl" class="salmon-text" [ngStyle]="{'color': perfil.color}" target="_blank"><i class="fab fa-facebook-square fa-2x"></i>
                         Nuestro
                         Facebook</a></p>
-                <p><a [href]="perfil.twitterUrl" class="salmon-text" [ngStyle]="{'color': perfil.color}" target="_blank"><i class="fab fa-twitter-square fa-2x"></i>
+                <p *ngIf="perfil.twitterUrl"><a [href]="perfil.twitterUrl" class="salmon-text" [ngStyle]="{'color': perfil.color}" target="_blank"><i class="fab fa-twitter-square fa-2x"></i>
                         Siguenos
                         en Twitter</a></p>
-                <p><a [href]="perfil.instagramUrl" class="salmon-text" [ngStyle]="{'color': perfil.color}" target="_blank"><i class="fab fa-instagram-square fa-2x"></i>
+                <p *ngIf="perfil.instagramUrl"><a [href]="perfil.instagramUrl" class="salmon-text" [ngStyle]="{'color': perfil.color}" target="_blank"><i class="fab fa-instagram-square fa-2x"></i>
                         Nuestros Productos en Instagram</a></p>
             </div>
         </div>

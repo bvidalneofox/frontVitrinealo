@@ -30,7 +30,7 @@
                         <a *ngIf="perfil.twitterUrl" target="_blank" [href]="perfil.twitterUrl" class="btn salmon-outline border-0"><i class="fab fa-twitter-square fa-2x"></i></a>
                         <a *ngIf="perfil.instagramUrl" target="_blank" [href]="perfil.instagramUrl" class="btn salmon-outline border-0"><i
                                 class="fab fa-instagram-square fa-2x"></i></a>
-                        <a target="_blank" [href]="'https://wa.me/56978504418'" class="btn salmon-outline border-0"><i
+                        <a *ngIf="perfil.contacto" target="_blank" [href]="'https://wa.me/56' + perfil.contacto" class="btn salmon-outline border-0"><i
                                 class="fab fa-whatsapp-square fa-2x"></i></a>
                     </div>
                 </div>
