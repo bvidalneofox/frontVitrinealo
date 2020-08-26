@@ -19,6 +19,7 @@ export class AdministradorDestacadosComponent implements OnInit {
   no_destacados:any;
   semanas='1';
   publicacion: Publicacion = new Publicacion;
+  json_pendientes:any
   
 
   constructor(
@@ -56,6 +57,13 @@ export class AdministradorDestacadosComponent implements OnInit {
       this.no_destacados = res.publicaciones;
       console.log(this.no_destacados)
     })
+  }
+
+  pendientes(){
+    // alert(this.perfil._id)
+    this._Destacados.pendientes(this.perfil._id).subscribe(res => {
+      this.json_pendientes = res.destacados;
+    });
   }
 
   datos(p){

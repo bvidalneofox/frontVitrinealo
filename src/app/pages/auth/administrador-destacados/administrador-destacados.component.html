@@ -29,6 +29,9 @@
     <hr>
 
     <h3 [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}" class="left-center">No destacados</h3>
+    <div class="text-right">
+        <button (click)="pendientes()" data-toggle="modal" data-target="#exampleModal2" type="button" class="btn btn-light"><i class="fas fa-stopwatch"></i> pendientes</button>
+    </div>
     <div class="table-responsive">
         <table class="table table-bordered">
             <tr [ngStyle]="{'border-color': perfil.color, 'color': 'white', 'background':perfil.color}">
@@ -38,7 +41,7 @@
                 <td></td>
             </tr>
             <tr *ngFor="let p of no_destacados ">
-                <img style="width: 5rem;" class="rounded" [src]="p.foto1Url | imagenes:'productos'" alt="el kkck">
+                <img style="width: 5rem;" class="rounded" [src]="p.foto1Url | imagenes:'productos'" alt="Imagen">
                 <td>{{p.titulo}}</td>
                 <td>{{p.descripcion}}</td>
                 <td>
@@ -95,6 +98,59 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         <button (click)="solicitar(publicacion)" type="button" class="btn" [ngStyle]="{'color':'white','background': perfil.color}">Solicitar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal json_pendientes-->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" [ngStyle]="{'border-color': perfil.color, 'background': perfil.color}">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:white">
+                            <i class="fas fa-stopwatch"></i> pendientes
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <pre>{{json_pendientes | json}}</pre> -->
+
+                       <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr [ngStyle]="{'border-color': perfil.color, 'color': 'white', 'background':perfil.color}">
+                                    <td>Imagen</td>
+                                    <td>Titulo</td>
+                                    <td>Descripcion</td>
+                                    <td>Periodo destacado</td>
+                                    <td>Estado</td>
+                                </tr>
+                                <tr *ngFor="let p of json_pendientes">
+                                    <td><img style="width: 5rem;" class="rounded" [src]="p.publicacion.foto1Url | imagenes:'productos'"
+                                            alt="el kkck"></td>
+                                    <td><small>{{ p.publicacion.titulo }}</small></td>
+                                    <td><small>{{ p.publicacion.descripcion }}</small></td>
+                                    <td> 
+                                        <small *ngIf="p.semana == 1">{{p.semana}} semana</small>
+                                        <small *ngIf="p.semana > 1">{{p.semana}} semanas</small>
+                                    </td>
+                                    <td *ngIf="p.estado=='P'">
+                                        <span class="badge" [ngStyle]="{'border-color': perfil.color, 'color': 'white', 'background':perfil.color}">Pendiente</span>
+                                    </td>
+                                </tr>
+                            </table>
+                       </div>
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <!-- <button (click)="solicitar(publicacion)" type="button" class="btn"
+                            [ngStyle]="{'color':'white','background': perfil.color}">Solicitar</button> -->
                     </div>
                 </div>
             </div>

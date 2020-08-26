@@ -24,4 +24,11 @@ export class DestacadosService {
 
     return this.http.post(url, Publicacion);
   }
+
+  pendientes(perfil): Observable<any> {
+  
+    let url = `${environment.url}destacados/pendientes/`+perfil;
+    console.log(url);
+    return this.http.get(url);
+  }
 }
