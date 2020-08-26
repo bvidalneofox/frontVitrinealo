@@ -3,13 +3,13 @@ img {
     height: auto;
 }
 
-@media (min-width: 14em) {
+/* @media (min-width: 14em) {
     .card-columns {
         -webkit-column-count: 2;
         -moz-column-count: 2;
         column-count: 2;
     }
-}
+} */
 
 @media (min-width: 34em) {
     .card-columns {
