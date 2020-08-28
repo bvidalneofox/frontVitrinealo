@@ -11,6 +11,6 @@
             <option value="" selected disabled hidden>--Seleccione--</option>
             <option *ngFor="let itemComuna of _comunaService.comunas" [value]="itemComuna._id">{{itemComuna.nombre}}</option>
         </select>
-        <button [disabled]="!comunaId" class="btn salmon-outline btn-block mt-4" [routerLink]="['/catalogo', comunaId]">Busqueda</button>
+        <button [disabled]="!comunaId" class="btn salmon btn-block mt-4 button-selected" [routerLink]="['/catalogo', comunaId]">Busqueda</button>
     </div>
 </div>
