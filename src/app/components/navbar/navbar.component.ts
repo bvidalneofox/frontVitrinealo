@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { NotificacionService } from 'src/app/services/notificacion.service';
 import { Notificacion } from 'src/app/models/notificacion.model';
+import { HttpClient } from '@angular/common/http';
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
 
 declare const gapi: any;
 
@@ -17,6 +21,9 @@ export class NavbarComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
 
+  user: SocialUser;
+  loggedIn: boolean;
+
   notificaciones: Notificacion[] = [];
   notificacionesNuevas: Notificacion[] = [];
 
@@ -27,14 +34,34 @@ export class NavbarComponent implements OnInit {
     public _perfilService: PerfilService,
     public _notificacionService: NotificacionService,
     public route: Router,
-    private ngZone: NgZone
-  ) { }
+    private ngZone: NgZone,
+    private authService: SocialAuthService
+  ) {}
 
   ngOnInit(): void {
+
     this.googleInit();
+
     if (this._loginService.usuario._id) {
       this.getNotificaciones();
     }
+
+    if(!this._loginService.isAuthenticated()){
+      this.logout();
+    }
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(this.user);
+      console.log(this.loggedIn);
+
+      this._loginService.loginFacebook(this.user).subscribe(response => {
+        this.route.navigate(['miPerfil/inicio'])
+      });
+
+    });
+
   }
 
   googleInit() {
@@ -50,6 +77,10 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  fbLogin(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
   attachSignin(element) {
     this.auth2.attachClickHandler(element, {}, (googleUser) => {
 
@@ -57,7 +88,7 @@ export class NavbarComponent implements OnInit {
 
       this._loginService.loginGoogle(token).subscribe(response => {
         this.ngZone.run(() =>
-          this.route.navigate(['miPerfil'])
+          this.route.navigate(['miPerfil/inicio'])
         );
       }, error => {
         console.log(error);

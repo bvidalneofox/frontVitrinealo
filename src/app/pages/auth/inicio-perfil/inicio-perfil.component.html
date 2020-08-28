@@ -1,4 +1,4 @@
-<div class="row" *ngIf="!perfil._id">
+<div class="row" *ngIf="!perfil._id && _loginService.usuario.ciudad">
     <div class="col-12">
         <div class="alert salmon text-center" role="alert">
             Bienvenido <b>{{_loginService.usuario.nombre}}</b>, parece que aún no cuentas con un perfil de
@@ -17,8 +17,44 @@
     </div>
 </div>
 
+<div class="row" *ngIf="!_loginService.usuario.ciudad">
+    <div class="col-12">
+        <div class="alert salmon text-center" role="alert" [ngStyle]="{'background': perfil.color}">
+            ¡Solo falta que ingreses tu ubicacion para luego comenzar a crear tu perfil!
+        </div>
+    </div>
+</div>
+
+<!-- ROW SELECCION DE CIUDAD -->
+<div class="row" *ngIf="!_loginService.usuario.ciudad">
+    <div class="col-12">
+        <div class="card salmon-outline">
+            <div class="card-body">
+                <form ngNativeValidate #formCiudades="ngForm" (submit)="terminoRegistro(formCiudades.value)">
+                    <h4 class="card-title">Ubicación</h4>
+                    <label>Region</label>
+                    <select class="form-control" (change)="_comunaService.changeRegion($event.target.value)">
+                        <option value="" selected disabled hidden>--Seleccione--</option>
+                        <option *ngFor="let itemRegion of _regionService.regiones" [value]="itemRegion._id">
+                            {{itemRegion.nombre}}</option>
+                    </select>
+                    <label>Comuna</label>
+                    <select class="form-control" name="comuna" ngModel>
+                        <option value="" selected disabled hidden>--Seleccione--</option>
+                        <option *ngFor="let itemComuna of _comunaService.comunas" [value]="itemComuna._id">
+                            {{itemComuna.nombre}}</option>
+                    </select>
+                    <button [disabled]="formCiudades.invalid" type="submit"
+                        class="btn salmon-outline btn-block mt-3">¡Registrar mi
+                        Perfil!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- ROW CREACION DE PERFIL -->
-<div class="row" *ngIf="!perfil._id">
+<div class="row" *ngIf="!perfil._id && _loginService.usuario.ciudad">
     <div class="col-12">
         <div class="card salmon-outline">
             <div class="card-body">
@@ -53,18 +89,22 @@
 <!-- MENU BOTONES -->
 <div class="row" *ngIf="perfil._id">
     <div class="col-md-4">
-        <app-card-navigation [titulo]="'Mi Pagina'" [icon]="'fas fa-laptop-house fa-4x'" [ruta]="'/miPerfil/administracionPerfil'" [color]="perfil.color"></app-card-navigation>
+        <app-card-navigation [titulo]="'Mi Pagina'" [icon]="'fas fa-laptop-house fa-4x'"
+            [ruta]="'/miPerfil/administracionPerfil'" [color]="perfil.color"></app-card-navigation>
     </div>
     <div class="col-md-4 mt-3 mt-md-0">
-        <app-card-navigation [titulo]="'Mis Productos'" [icon]="'fas fa-archive fa-4x'" [ruta]="'/miPerfil/administracionProductos'" [color]="perfil.color"></app-card-navigation>
+        <app-card-navigation [titulo]="'Mis Productos'" [icon]="'fas fa-archive fa-4x'"
+            [ruta]="'/miPerfil/administracionProductos'" [color]="perfil.color"></app-card-navigation>
     </div>
     <div class="col-md-4 mt-3 mt-md-0">
-        <app-card-navigation [titulo]="'Estadisticas'" [icon]="'fas fa-poll fa-4x'" [ruta]="'/miPerfil/estadisticasPerfil'" [color]="perfil.color"></app-card-navigation>
+        <app-card-navigation [titulo]="'Estadisticas'" [icon]="'fas fa-poll fa-4x'"
+            [ruta]="'/miPerfil/estadisticasPerfil'" [color]="perfil.color"></app-card-navigation>
     </div>
 </div>
 <br>
 <div class="row" *ngIf="perfil._id">
     <div class="col-md-4">
-         <app-card-navigation [titulo]="'Destacar mis productos'" [icon]="'fas fa-medal fa-4x'" [ruta]="'/miPerfil/destacados'" [color]="perfil.color"></app-card-navigation>
+        <app-card-navigation [titulo]="'Destacar mis productos'" [icon]="'fas fa-medal fa-4x'"
+            [ruta]="'/miPerfil/destacados'" [color]="perfil.color"></app-card-navigation>
     </div>
 </div>

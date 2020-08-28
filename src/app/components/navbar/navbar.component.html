@@ -39,7 +39,7 @@
                   <button type="submit" id="btnGoogle" class="btn salmon-outline border-0"
                     [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i
                       class="fab fa-google-plus-square fa-2x"></i></button>
-                  <button class="btn salmon-outline border-0"
+                  <button (click)="fbLogin()" class="btn salmon-outline border-0"
                     [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i
                       class="fab fa-facebook-square fa-2x"></i></button>
                   <button class="btn salmon-outline border-0"

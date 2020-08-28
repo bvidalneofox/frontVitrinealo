@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from '../models/usuario.model';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
+import { SocialUser } from 'angularx-social-login';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,21 @@ export class LoginService {
 
   }
 
-  public isAuthenticated(): boolean {
+  loginFacebook(user: SocialUser){
+
+    let url = `${environment.url}login/facebook`;
+    return this.http.post(url, user)
+    .pipe(
+      map((resp: any) => {
+        console.log(resp);
+        this.guardarStorage(resp.token, resp.usuario);
+        return resp;
+      })
+    );
+    
+  }
+
+  isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     console.log(!this.jwtHelper.isTokenExpired(token));
     return !this.jwtHelper.isTokenExpired(token);

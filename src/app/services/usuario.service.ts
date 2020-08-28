@@ -38,7 +38,7 @@ export class UsuarioService {
 
   actualizarUsuario(usuario: Usuario){
 
-    let url = `${environment.url}usuario`;
+    let url = `${environment.url}usuario/${usuario._id}`;
 
     return this.http.put(url, usuario);
 

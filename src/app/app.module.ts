@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { FacebookLoginProvider } from 'angularx-social-login';
 
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
@@ -57,7 +59,8 @@ import { AdministradorDestacadosComponent } from './pages/auth/administrador-des
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SocialLoginModule
   ],
   exports: [
     CardNavigationComponent
@@ -72,7 +75,19 @@ import { AdministradorDestacadosComponent } from './pages/auth/administrador-des
       provide: JWT_OPTIONS, 
       useValue: JWT_OPTIONS 
     },
-    JwtHelperService
+    JwtHelperService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('299119784518513'),
+          }
+        ],
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })
