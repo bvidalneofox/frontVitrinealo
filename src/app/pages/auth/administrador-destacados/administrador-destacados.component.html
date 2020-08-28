@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-6">
         
-        <h3 class="salmon-text" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">Destacar mis productos</h3>
+        <h3 class="salmon-text" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}">Destacados</h3>
     </div>
     <div class="col-6 text-right">
         <a class="salmon-text cursor h3" [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}"
@@ -28,5 +28,132 @@
     </div>
     <hr>
 
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas id, consectetur ducimus repellendus libero optio nemo repellat eos vitae culpa, eligendi blanditiis cumque dolorem iure eaque consequatur voluptatem amet quam.
+    <h3 [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}" class="left-center">No destacados</h3>
+    <div class="text-right">
+        <button (click)="pendientes()" data-toggle="modal" data-target="#exampleModal2" type="button" class="btn btn-light"><i class="fas fa-stopwatch"></i> pendientes</button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr [ngStyle]="{'border-color': perfil.color, 'color': 'white', 'background':perfil.color}">
+                <td>Imagen</td>
+                <td>titulo</td>
+                <td>Descripcion</td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let p of no_destacados ">
+                <img style="width: 5rem;" class="rounded" [src]="p.foto1Url | imagenes:'productos'" alt="Imagen">
+                <td>{{p.titulo}}</td>
+                <td>{{p.descripcion}}</td>
+                <td>
+                    <button type="submit"
+                            class="btn salmon-outline btn-block mt-3 btn-sm"
+                           [ngStyle]="{'border-color': perfil.color, 'color': perfil.color}"
+                           (click)="datos(p)"
+                           data-toggle="modal" data-target="#exampleModal"
+                           >
+                           <!-- <i class="fas fa-medal"></i> -->
+                           Destacar
+                    </button>
+
+                    
+                </td>
+            </tr>
+        </table>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" [ngStyle]="{'border-color': perfil.color, 'background': perfil.color}">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:white"><i class="fas fa-medal"></i> Destacar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <pre>{{publicacion | json}}</pre> -->
+                    <div class="alert alert-dismissible fade show" [ngStyle]="{'background': perfil.color, 'color':'white'}" role="alert">
+                        Al solicitar un destacado los administradores se contactaran contigo
+                        <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
+                    </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img style="width: 5rem;" class="rounded" [src]="publicacion.foto1Url | imagenes:'productos'" alt="el kkck">
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{publicacion.titulo}}</p>
+                                <p [ngStyle]="{'color': perfil.color}">${{publicacion.precio}}</p>
+                            </div>
+                        </div>
+                        <label for="">Destacar por:</label>
+                        <select [(ngModel)]="semanas" name="" id="" class="form-control">
+                            <option value="1">1 semana ($2.000)</option>
+                            <option value="2">2 semanas ($4.000)</option>
+                            <option value="3">3 semanas ($6.000)</option>
+                            <option value="4">4 semanas ($8.000)</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button (click)="solicitar(publicacion)" type="button" class="btn" [ngStyle]="{'color':'white','background': perfil.color}">Solicitar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal json_pendientes-->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" [ngStyle]="{'border-color': perfil.color, 'background': perfil.color}">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:white">
+                            <i class="fas fa-stopwatch"></i> pendientes
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <pre>{{json_pendientes | json}}</pre> -->
+
+                       <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr [ngStyle]="{'border-color': perfil.color, 'color': 'white', 'background':perfil.color}">
+                                    <td>Imagen</td>
+                                    <td>Titulo</td>
+                                    <td>Descripcion</td>
+                                    <td>Periodo destacado</td>
+                                    <td>Estado</td>
+                                </tr>
+                                <tr *ngFor="let p of json_pendientes">
+                                    <td><img style="width: 5rem;" class="rounded" [src]="p.publicacion.foto1Url | imagenes:'productos'"
+                                            alt="el kkck"></td>
+                                    <td><small>{{ p.publicacion.titulo }}</small></td>
+                                    <td><small>{{ p.publicacion.descripcion }}</small></td>
+                                    <td> 
+                                        <small *ngIf="p.semana == 1">{{p.semana}} semana</small>
+                                        <small *ngIf="p.semana > 1">{{p.semana}} semanas</small>
+                                    </td>
+                                    <td *ngIf="p.estado=='P'">
+                                        <span class="badge" [ngStyle]="{'border-color': perfil.color, 'color': 'white', 'background':perfil.color}">Pendiente</span>
+                                    </td>
+                                </tr>
+                            </table>
+                       </div>
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <!-- <button (click)="solicitar(publicacion)" type="button" class="btn"
+                            [ngStyle]="{'color':'white','background': perfil.color}">Solicitar</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

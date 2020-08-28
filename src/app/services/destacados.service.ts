@@ -9,5 +9,26 @@ import { Observable } from 'rxjs';
 })
 export class DestacadosService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getPublicaciones(perfil): Observable<any> {
+    
+    let url = `${environment.url}publicacion/`+perfil;
+
+    return this.http.get(url);
+
+  }
+
+  solicitar(Publicacion): Observable<any>{
+    let url = `${environment.url}destacados`;
+
+    return this.http.post(url, Publicacion);
+  }
+
+  pendientes(perfil): Observable<any> {
+  
+    let url = `${environment.url}destacados/pendientes/`+perfil;
+    console.log(url);
+    return this.http.get(url);
+  }
 }
