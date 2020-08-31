@@ -120,7 +120,7 @@
 
                     <h3>{{productoSeleccionado.precio | currency:'CLP':'$'}}</h3>
 
-                    <button class="btn salmon btn-block button-selected"
+                    <button *ngIf="!vistaPerfil" class="btn salmon btn-block button-selected"
                         [routerLink]="['/perfil', productoSeleccionado?.perfil?._id]">Contactar con el vendedor</button>
 
                 </div>

@@ -13,6 +13,7 @@ export class ProductosComponent implements OnInit {
   @Input() productos: Publicacion[] = [];
   @Input() color: string = '';
   @Input() administracion: boolean = false;
+  @Input() vistaPerfil: boolean = true;
 
   editor: boolean = false;
 
@@ -40,6 +41,7 @@ export class ProductosComponent implements OnInit {
       console.log(response);
     });
     this.productoSeleccionado = producto;
+    console.log(this.productoSeleccionado);
   }
 
 }
