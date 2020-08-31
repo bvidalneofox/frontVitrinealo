@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-6">
+        <h3 class="salmon-text">Mantenedor Destacados</h3>
+    </div>
+    <div class="col-6 text-right">
+        <a class="salmon-text cursor h3" [routerLink]="['/moderacion/inicio']"><i class="fas fa-arrow-left"></i>
+            Volver</a>
+    </div>
+</div>
+<hr>
+
+
+<div>
+    <!-- <small><pre>{{ json_pendientes | json }}</pre></small> -->
+    <h4 class="salmon-text">Pendientes</h4>
+
+    <div class="float-right">
+        <button data-toggle="modal" data-target="#modal1" type="button" class="btn btn-light"><i class="fas fa-medal"></i> Destacando</button>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Destacando</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <pre>{{json_destacando | json}}</pre> -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr style="background: #521642; color:white">
+                                    <td>Fecha solicitado</td>
+                                    <td>Imagen</td>
+                                    <td>Titulo</td>
+                                    <td>Periodo solicitado</td>
+                                    <td>Dias solicitados</td>
+                                    <td>Dias restantes</td>
+                                    <td>Emprendimiento</td>
+                                    <td>Opción</td>
+                            
+                                </tr>
+                                <tr *ngFor="let p of json_destacando">
+                                    <td><small>{{p.createdAt | date:'short'}}</small></td>
+                                    <td><img style="width: 5rem;" class="rounded"
+                                            [src]="'http://127.0.0.1:3000/img/productos/' + p.publicacion.foto1Url" alt="imagen"></td>
+                                    <td><small>{{ p.publicacion.titulo }}</small></td>
+                                    <td>
+                                        <small *ngIf="p.semana == 1">{{p.semana}} semana</small>
+                                        <small *ngIf="p.semana > 1">{{p.semana}} semanas</small>
+                                    </td>
+                                    <td>
+                                        aprobado el {{ p.fecha_aprobacion | date:'short' }}, expira el {{ p.fecha_expiracion | date:'short'}}
+                                    </td>
+                                    <td>
+                                        {{ p.intervalo }} dia(s)
+                                    </td>
+                                    <td>
+                                        <small>{{ p.perfil[0].nombre }}</small>
+                                        <p><span class="badge badge-pill badge-success"><b>{{ p.perfil[0].contacto }}</b></span></p>
+                                    </td>
+                                    <td>
+                                        <button (click)="llenar_modal(p)" data-toggle="modal" data-target="#exampleModal" type="button"
+                                            class="btn btn-light"><i class="fas fa-tools"></i></button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div><br>
+   
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr style="background: #521642; color:white">
+                <td>Fecha solicitado</td>
+                <td>Imagen</td>
+                <td>Titulo</td>
+                <td>Periodo solicitado</td>
+                <td>Emprendimiento</td>
+                <td>Opción</td>
+                
+            </tr>
+            
+            <tr *ngFor="let p of json_pendientes">
+                <td><small>{{p.createdAt | date:'short'}}</small></td>
+                <td><img style="width: 5rem;" class="rounded" [src]="'http://127.0.0.1:3000/img/productos/' + p.publicacion.foto1Url"
+                        alt="imagen"></td>
+                <td><small>{{ p.publicacion.titulo }}</small></td>
+                <td>
+                    <small *ngIf="p.semana == 1">{{p.semana}} semana</small>
+                    <small *ngIf="p.semana > 1">{{p.semana}} semanas</small>
+                </td>
+                <td >
+                    <small>{{ p.perfil[0].nombre }}</small>
+                    <p><span class="badge badge-pill badge-success"><b>{{ p.perfil[0].contacto }}</b></span></p>
+                </td>
+                <td>
+                    <button (click)="llenar_modal(p)" data-toggle="modal" data-target="#exampleModalxxxxx" type="button" class="btn btn-light"><i class="fas fa-tools"></i></button>
+                </td>
+            </tr>
+        </table>
+
+
+
+        <!-- Modal conf -->
+       
+    </div>
+</div>

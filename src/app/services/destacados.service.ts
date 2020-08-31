@@ -31,4 +31,23 @@ export class DestacadosService {
     console.log(url);
     return this.http.get(url);
   }
+  
+  
+  mod_pendientes(): Observable<any> {
+
+    let url = `${environment.url}destacados/pendientes`;
+    console.log(url);
+    return this.http.get(url);
+  }
+  mod_destacando(): Observable<any> {
+
+    let url = `${environment.url}destacados/destacando`;
+    console.log(url);
+    return this.http.get(url);
+  }
+
+  destacar(data): Observable <any>{
+    let url = `${environment.url}destacados/destacar`;
+    return this.http.post(url, data);
+  }
 }
