@@ -7,6 +7,7 @@ import { SolicitudesPerfilComponent } from './solicitudes-perfil/solicitudes-per
 import { SolicitudesProductosComponent } from './solicitudes-productos/solicitudes-productos.component';
 import { LogErroresComponent } from './log-errores/log-errores.component';
 import { FormsModule } from '@angular/forms';
+import { SolicitudesDestacadosComponent } from './solicitudes-destacados/solicitudes-destacados.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     InicioModeracionComponent,
     SolicitudesPerfilComponent,
     SolicitudesProductosComponent,
-    LogErroresComponent
+    LogErroresComponent,
+    SolicitudesDestacadosComponent
   ],
   imports: [
     CommonModule,
