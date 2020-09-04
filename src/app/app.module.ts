@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { ShareModule } from 'ngx-sharebuttons';
 import { FacebookLoginProvider } from 'angularx-social-login';
+import { QRCodeModule } from 'angular2-qrcode';
 
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
@@ -30,6 +32,7 @@ import { AdministradorProductosComponent } from './pages/auth/administrador-prod
 import { EstadisticasPerfilComponent } from './pages/auth/estadisticas-perfil/estadisticas-perfil.component';
 import { TiempoPipe } from './pipes/tiempo.pipe';
 import { AdministradorDestacadosComponent } from './pages/auth/administrador-destacados/administrador-destacados.component';
+import { ProductoComponent } from './pages/public/producto/producto.component';
 
 @NgModule({
   declarations: [
@@ -53,14 +56,17 @@ import { AdministradorDestacadosComponent } from './pages/auth/administrador-des
     AdministradorProductosComponent,
     EstadisticasPerfilComponent,
     TiempoPipe,
-    AdministradorDestacadosComponent
+    AdministradorDestacadosComponent,
+    ProductoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    ShareModule,
+    QRCodeModule
   ],
   exports: [
     CardNavigationComponent

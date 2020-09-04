@@ -27,6 +27,15 @@ export class PublicacionService {
 
   }
 
+  getPublicacionId(id: string): Observable<any>{
+
+    let url = `${environment.url}publicacion/porId/${id}`;
+
+    return this.http.get(url);
+
+
+  }
+
   getPublicacionesPerfil(id: string): Observable<any>{
 
     let url = `${environment.url}publicacion/${id}`;

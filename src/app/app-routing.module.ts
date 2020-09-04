@@ -12,6 +12,7 @@ import { InicioPerfilComponent } from './pages/auth/inicio-perfil/inicio-perfil.
 import { AdministradorProductosComponent } from './pages/auth/administrador-productos/administrador-productos.component';
 import { EstadisticasPerfilComponent } from './pages/auth/estadisticas-perfil/estadisticas-perfil.component';
 import { AdministradorDestacadosComponent } from './pages/auth/administrador-destacados/administrador-destacados.component';
+import { ProductoComponent } from './pages/public/producto/producto.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
         { path: '', component: InicioComponent },
         { path: 'catalogo/:id', component: CatalogoComponent },
         { path: 'perfil/:id', component: PerfilComponent },
-        { path: 'registro', component: RegistroComponent }
+        { path: 'registro', component: RegistroComponent },
+        { path: 'producto/:id', component: ProductoComponent }
       ]
   },
   {

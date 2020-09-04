@@ -110,7 +110,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('usuario');
     this._loginService.usuario = new Usuario();
     this._loginService.token = null;
-    this.route.navigate(['/']);
+    // this.route.navigate(['/']);
   }
 
   getNotificaciones() {

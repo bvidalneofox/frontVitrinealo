@@ -22,6 +22,12 @@
 
     </div>
 
+    <!-- CODIGO QR -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+                <qr-code [value]="'https://vitrinealo.cl/#/perfil/' + perfil._id" [size]="150"></qr-code>
+        </div>
+    </div>
 
     <!-- ROW PERFIL ACTUAL -->
     <div class="collapse" id="collapsePerfil" data-parent="#myGroup">

@@ -38,10 +38,8 @@ export class ProductosComponent implements OnInit {
   test(producto: Publicacion){
     producto.contador += 1;
     this._productosService.actualizarPublicacion(producto).subscribe(response => {
-      console.log(response);
     });
     this.productoSeleccionado = producto;
-    console.log(this.productoSeleccionado);
   }
 
 }

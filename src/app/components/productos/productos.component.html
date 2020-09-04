@@ -120,6 +120,13 @@
 
                     <h3>{{productoSeleccionado.precio | currency:'CLP':'$'}}</h3>
 
+                    <div class="row">
+                        <div class="col-12">
+                            <button shareButton="facebook" [url]="'https://www.vitrinealo.cl/#/producto/' + productoSeleccionado._id" class="btn salmon-outline">Facebook</button>
+                            <button shareButton="whatsapp" [url]="'https://www.vitrinealo.cl/#/producto/' + productoSeleccionado._id" class="btn salmon-outline">Whatsapp</button>
+                        </div>
+                    </div>
+
                     <button *ngIf="!vistaPerfil" class="btn salmon btn-block button-selected"
                         [routerLink]="['/perfil', productoSeleccionado?.perfil?._id]">Contactar con el vendedor</button>
 
