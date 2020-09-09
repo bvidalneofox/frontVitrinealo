@@ -11,6 +11,16 @@ body {
     color: white;
 }
 
+.button-selected{
+    border:solid;
+    border-radius:28px;
+}
+.button-selected:hover{
+    background:white;
+    color: #521642;
+    border-color: #521642;
+}
+
 .salmon-text {
     color: #521642;
 }
