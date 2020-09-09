@@ -52,6 +52,13 @@
         </div>
       </li>
 
+      <!-- Foro -->
+      <li class="nav-item dropdown mr-1" *ngIf="_loginService.usuario._id">
+        <a class="nav-link btn salmon-outline text-white" [routerLink]="['/foro']"
+          [ngStyle]="{'border-color': _perfilService.color, 'color': _perfilService.color}"><i class="fas fa-comment-alt"></i>&nbsp; Foro
+        </a>
+        
+      </li>
       <!-- Notificaciones -->
       <li class="nav-item dropdown mr-1" *ngIf="_loginService.usuario._id">
         <a class="nav-link btn salmon-outline dropdown-toggle text-white"

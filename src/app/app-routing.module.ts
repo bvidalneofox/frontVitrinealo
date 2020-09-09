@@ -12,7 +12,7 @@ import { InicioPerfilComponent } from './pages/auth/inicio-perfil/inicio-perfil.
 import { AdministradorProductosComponent } from './pages/auth/administrador-productos/administrador-productos.component';
 import { EstadisticasPerfilComponent } from './pages/auth/estadisticas-perfil/estadisticas-perfil.component';
 import { AdministradorDestacadosComponent } from './pages/auth/administrador-destacados/administrador-destacados.component';
-
+import { ForoComponent } from './pages/auth/foro/foro.component';
 
 const routes: Routes = [
   {
@@ -37,6 +37,9 @@ const routes: Routes = [
   {
     path: 'moderacion', loadChildren: () => 
       import('./pages/moderadores/moderadores.module').then(m => m.ModeradoresModule)
+  },
+  {
+    path: 'foro', component: ForoComponent
   }
 ];
 

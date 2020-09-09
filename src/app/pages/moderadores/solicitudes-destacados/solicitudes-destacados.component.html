@@ -104,7 +104,7 @@
                     <p><span class="badge badge-pill badge-success"><b>{{ p.perfil[0].contacto }}</b></span></p>
                 </td>
                 <td>
-                    <button (click)="llenar_modal(p)" data-toggle="modal" data-target="#exampleModalxxxxx" type="button" class="btn btn-light"><i class="fas fa-tools"></i></button>
+                    <button (click)="llenar_modal(p)" data-toggle="modal" data-target="#admin" type="button" class="btn btn-light"><i class="fas fa-tools"></i></button>
                 </td>
             </tr>
         </table>
@@ -112,6 +112,41 @@
 
 
         <!-- Modal conf -->
+
+        <div class="modal fade" id="admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="background: #521642">
+                  <h5 style="color:white" class="modal-title" id="exampleModalLabel">Destacar</h5>
+                  <button type="button" id="cerrar" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-primary" role="alert">
+                        La solicitud se genera por un periodo de {{data_modal.semana}} semana(s)
+                      </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- data_modal -->
+                            
+                              <img style="width: 5rem;" [src]="'http://127.0.0.1:3000/img/productos/' + data_modal.publicacion.foto1Url">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Fecha de aprobación</label>
+                            <input [(ngModel)]="desde" class="form-control form-control-sm" type="date" name="" id="">
+                            <label for="">Fecha de expiración</label>
+                            <input [(ngModel)]="hasta" class="form-control form-control-sm" type="date" name="" id="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button (click)="destacar(data_modal._id)" type="button" class="btn btn-primary">Destacar!</button>
+                </div>
+              </div>
+            </div>
+          </div>
        
     </div>
 </div>

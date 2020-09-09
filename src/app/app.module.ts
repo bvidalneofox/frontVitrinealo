@@ -28,6 +28,7 @@ import { AdministradorProductosComponent } from './pages/auth/administrador-prod
 import { EstadisticasPerfilComponent } from './pages/auth/estadisticas-perfil/estadisticas-perfil.component';
 import { TiempoPipe } from './pipes/tiempo.pipe';
 import { AdministradorDestacadosComponent } from './pages/auth/administrador-destacados/administrador-destacados.component';
+import { ForoComponent } from './pages/auth/foro/foro.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AdministradorDestacadosComponent } from './pages/auth/administrador-des
     AdministradorProductosComponent,
     EstadisticasPerfilComponent,
     TiempoPipe,
-    AdministradorDestacadosComponent
+    AdministradorDestacadosComponent,
+    ForoComponent
   ],
   imports: [
     BrowserModule,
