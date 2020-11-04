@@ -97,7 +97,7 @@ export class SolicitudesDestacadosComponent implements OnInit {
         if(res.ok){
           Swal.fire('Bien!', res.mensaje, 'success');
           let button: HTMLElement = document.getElementById("cerrar") as HTMLElement;
-          console.log(button)
+          // console.log(button)
           button.click();
           this.pendientes();
           this.destacando();
