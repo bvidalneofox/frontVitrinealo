@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
@@ -27,6 +28,9 @@ import { InicioPerfilComponent } from './pages/auth/inicio-perfil/inicio-perfil.
 import { AdministradorProductosComponent } from './pages/auth/administrador-productos/administrador-productos.component';
 import { EstadisticasPerfilComponent } from './pages/auth/estadisticas-perfil/estadisticas-perfil.component';
 import { TiempoPipe } from './pipes/tiempo.pipe';
+import { FormularioClienteComponent } from './pages/auth/formularios/formulario-cliente/formulario-cliente.component';
+import { FormularioProyectoComponent } from './pages/auth/formularios/formulario-proyecto/formulario-proyecto.component';
+import { FormularioPresupuestoComponent } from './pages/auth/formularios/formulario-presupuesto/formulario-presupuesto.component';
 
 @NgModule({
   declarations: [
@@ -49,13 +53,17 @@ import { TiempoPipe } from './pipes/tiempo.pipe';
     InicioPerfilComponent,
     AdministradorProductosComponent,
     EstadisticasPerfilComponent,
-    TiempoPipe
+    TiempoPipe,
+    FormularioClienteComponent,
+    FormularioProyectoComponent,
+    FormularioPresupuestoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CardNavigationComponent

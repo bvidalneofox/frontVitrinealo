@@ -1,0 +1,170 @@
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Nuevo presupuesto</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Presupuesto existente</a>
+      
+    </div>
+  </nav>
+
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+        <div class="card salmon-outline">
+
+            <div class="card-header">
+                <div align="center">NUEVO PRESUPUESTO</div>
+            </div>
+            <div class="card-body">
+                <!-- <form action=""> -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="txt-gris" for="">PROYECTO</label>
+                            <select class="form-control" name="" id="">
+                                <option value="">Proyecto 1</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+            
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="txt-gris" for="">Titulo de presupuesto</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    
+                    </div>
+            
+                    
+                <!-- </form> -->
+                <div class="mt-2" align="right"><button  class="btn btn-success btn-sm" (click)="open_modal(visor)">Agregar Item</button></div>
+
+                <!-- tabla que mostrara los items -->
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <!-- {{data | json}} -->
+                        <table class="table">
+                            <tr class="table-secondary">
+                                <td>Item</td>
+                                <td>Unidad</td>
+                                <td>Ml</td>
+                                <td>M2</td>
+                                <td>M3</td>
+                                <td>Total</td>
+                                <td>Cantidad</td>
+                                <td>Valor unitario</td>
+                                <td>Total item</td>
+                                <td>Opción</td>
+                            </tr>
+                            <tr *ngFor="let i of data; let ix = index" [attr.data-index]="ix">
+                                <td>{{ i.item }}</td>
+                                <td>{{ i.unidad }}</td>
+                                <td>{{ i.ml }}</td>
+                                <td>{{ i.m2 }}</td>
+                                <td>{{ i.m3 }}</td>
+                                <td>{{ i.m_total }}</td>
+                                <td>{{ i.cantidad }}</td>
+                                <td>{{ i.valor_unitario }}</td>
+                                <td>{{ i.total }}</td>
+                                <td><button class="btn btn-danger btn-sm" (click)="delete_item(ix);">X</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="card-footer">
+               
+                <button (click)="detalle = true;" class="btn btn-light btn-block">Registrar</button>
+            </div>
+        </div>
+
+       
+
+        <!-- MODAL ADD ITEM -->
+        <ng-template #visor let-c="close" let-d="dismiss">
+            <div class="row">
+                <div class="col">
+                    <div class="modal-header text-center" id="demoFont">
+                        <h4 class="modal-title" id="modal-basic-title">Agregar Item de presupuesto</h4>
+                        <button id="closeModalButton" type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="form_item">
+                           <label for="">Tipo de presupuesto</label>
+                           <select formControlName="tipo_presupuesto"  class="form-control" name="" id="">
+                               <option value="">Materiales</option>
+                               <option value="">Mano de obra</option>
+                               <option value="">Maquinareas, herramientas y equipos</option>
+                           </select>
+                           
+
+                           <label for="">Item</label>
+                           <input formControlName="item" class="form-control" type="text" name="" id="">
+
+                           <hr>
+                           <div class="row">
+                               <div class="col-md-3">
+                                <label for="">Unidad</label>
+                                <select formControlName="unidad" class="form-control" name="" id="">
+                                    <option value="unidad">unidad</option>
+                                    <option value="caja">caja</option>
+                                    <option value="gl">gl</option>
+                                    <option value="kg">kg</option>
+                                    <option value="bolsas">bolsas</option>
+                                </select>
+                               </div>
+                               <div class="col-md-2">
+                                <label for="">Ml</label>
+                                <input formControlName="ml" type="text" class="form-control">
+                               </div>
+                               <div class="col-md-2">
+                                <label for="">M2</label>
+                                <input formControlName="m2" type="text" class="form-control">
+                               </div>
+                               <div class="col-md-2">
+                                <label for="">M3</label>
+                                <input formControlName="m3" type="text" class="form-control">
+                               </div>
+                               <div class="col-md-3">
+                                <label for="">Total</label>
+                                <input formControlName="m_total" type="text" class="form-control">
+                               </div>
+                           </div>
+                           <hr>
+                           <div class="row">
+                               <div class="col-md-4">
+                                   <label for="">Cantidad</label>
+                                   <input formControlName="cantidad" type="text" class="form-control">
+                               </div>
+                               <div class="col-md-4">
+                                   <label for="">Valor unitario</label>
+                                   <input formControlName="valor_unitario" type="text" class="form-control">
+                               </div>
+                               <div class="col-md-4">
+                                   <label for="">Total</label>
+                                   <input formControlName="total" type="text" class="form-control">
+                               </div>
+                           </div>
+                           <hr>
+                           <div align="right">
+                            <button class="btn btn-success" (click)="insert_item();">Ingresar</button>
+                           </div>
+                       </form>
+
+                       
+                        
+                    </div>
+                    <div class="modal-footer" [hidden]="true">
+                        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">OK</button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+  </div>

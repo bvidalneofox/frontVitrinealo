@@ -11,6 +11,9 @@ import { AuthMasterComponent } from './pages/auth/auth-master.component';
 import { InicioPerfilComponent } from './pages/auth/inicio-perfil/inicio-perfil.component';
 import { AdministradorProductosComponent } from './pages/auth/administrador-productos/administrador-productos.component';
 import { EstadisticasPerfilComponent } from './pages/auth/estadisticas-perfil/estadisticas-perfil.component';
+import { FormularioClienteComponent } from './pages/auth/formularios/formulario-cliente/formulario-cliente.component';
+import { FormularioProyectoComponent } from './pages/auth/formularios/formulario-proyecto/formulario-proyecto.component';
+import { FormularioPresupuestoComponent } from './pages/auth/formularios/formulario-presupuesto/formulario-presupuesto.component';
 
 
 const routes: Routes = [
@@ -20,7 +23,12 @@ const routes: Routes = [
         { path: '', component: InicioComponent },
         { path: 'catalogo/:id', component: CatalogoComponent },
         { path: 'perfil/:id', component: PerfilComponent },
-        { path: 'registro', component: RegistroComponent }
+        { path: 'registro', component: RegistroComponent },
+
+        //efectos de construplanet
+        { path:'formulario-cliente', component: FormularioClienteComponent },
+        { path:'formulario-proyecto', component: FormularioProyectoComponent },
+        { path:'formulario-presupuesto', component: FormularioPresupuestoComponent }
       ]
   },
   {
